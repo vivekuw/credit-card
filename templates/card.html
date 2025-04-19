@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+{% include 'header.html' %}
+    <title>Cards | Shield Trust Bank</title>
+        <link rel="stylesheet" href="{% static 'css/card.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+<br>
+<br>
+<h3 class="text-center fw-bold text-primary mt-3">Card Table</h3>
+<div class="container">
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-dark table-bordered table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Card ID</th>
+                        <th>User ID</th>
+                        <th>Expiry Date</th>
+                        <th>CVV</th>
+                        <th>Card Type</th>
+                        <th>Credit Limit</th>
+                        <th>Balance</th>
+                        <th>Is Active</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for card in cards %}
+                        <tr>
+                            <td>{{ card.card_id }}</td>
+                            <td>{{ card.user_id }}</td>
+                            <td>{{ card.expiry_date }}</td>
+                            <td>{{ card.cvv }}</td>
+                            <td>{{ card.card_type }}</td>
+                            <td>{{ card.credit_limit }}</td>
+                            <td>{{ card.balance }}</td>
+                            <td>{{ card.is_active }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">No fraud alerts found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer class="footer text-center bg-dark text-white mt-5 p-3">
+    <p class="mb-0">&copy; 2025 The Project by Vivek and Taef</p>
+</footer>
+</body>
+</html>

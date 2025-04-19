@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <title>Fraud Alerts | Shield Trust Bank</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+     <link rel="stylesheet" href="{% static 'css/fraud.css' %}">
+    <script src="{% static 'js/fraud.js' %}"></script>
+</head>
+<body>
+{% include 'header.html' %}
+<br>
+<br>
+<h3 class="text-center fw-bold text-primary mt-3">Fraud Alert Table</h3>
+<div class="container">
+    <div class="filters">
+        <input type="date" id="dateFilter" placeholder="Filter by Date">
+    </div>
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-dark table-bordered table-hover text-center" id="fraudtable">
+                <thead>
+                    <tr>
+                        <th>Alert ID</th>
+                        <th>Transaction ID</th>
+                        <th>Anomaly Score (fraud prediction)</th>
+                        <th>Threshold (statistical threshold)</th>
+                        <th>Alert Date</th>
+                        <th>Alert Send</th>
+                        <th>Sent Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for alert in fraud_alerts %}
+                        <tr>
+                            <td>{{ alert.id }}</td>
+                            <td>{{ alert.transaction.transaction_id }}</td>
+                            <td class="{% if alert.anomaly_score > 0.8 %}alert-high{% elif alert.anomaly_score > 0.5 %}alert-medium{% else %}alert-low{% endif %}">
+                                {{ alert.anomaly_score }}
+                            </td>
+                            <td>{{ alert.threshold }}</td>
+                            <td>{{ alert.created_at|date:"M j, Y" }}</td>
+                            <td>{{ alert.alert_sent }}</td>
+                            <td>{{alert.sent_timestamp}}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">No fraud alerts found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer class="footer text-center bg-dark text-white mt-5 p-3">
+    <p class="mb-0">&copy; 2025 The Project by Vivek and Taef</p>
+</footer>
+</body>
+</html>

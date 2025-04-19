@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    {% include 'header.html' %}
+    <title>Transaction | Shield Trust Bank</title>
+    <link rel="stylesheet" href="{% static 'css/transaction.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<br>
+<br>
+<h3 class="text-center fw-bold text-primary mt-3">Transaction Table</h3>
+
+<div class="container">
+    <div class="filters">
+        <input type="date" id="dateFilter" placeholder="Filter by Date">
+        <input type="text" id="merchantFilter" placeholder="Merchant Name">
+        <input type="text" id="categoryFilter" placeholder="Category">
+        <select id="statusFilter">
+            <option value="">All Status</option>
+            <option value="completed">Completed</option>
+            <option value="failed">Failed</option>
+            <option value="pending">Pending</option>
+        </select>
+        <select id="fraudFilter">
+            <option value="">All Is Fraud</option>
+            <option value="1">Fraud</option>
+            <option value="0">Normal</option>
+        </select>
+    </div>
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-dark table-bordered table-hover text-center" id="transactionTable">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Card ID</th>
+                        <th>Amount</th>
+                        <th>Merchant Name</th>
+                        <th>Merchant Category</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Is Fraud</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                        <tr>
+                            <td>{{ transaction.transaction_id }}</td>
+                            <td>{{ transaction.card.card_id }}</td>
+                            <td>₹{{ transaction.amount }}</td>
+                            <td>{{ transaction.merchant_name }}</td>
+                            <td>{{ transaction.merchant_category }}</td>
+                            <td>{{ transaction.date|date:"M j, Y" }}</td>
+                            <td>{{ transaction.location }}</td>
+                            <td class="status-{{ transaction.status|lower }}">{{ transaction.status }}</td>
+                            <td class="{% if transaction.isfraud.is_fraud == 1 %}fraud-alert{% endif %}">
+                                {% if transaction.isfraud.is_fraud == 1 %}1 {% else %} 0 {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-center">No transactions found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer class="footer text-center bg-dark text-white mt-5 p-3">
+    <p class="mb-0">&copy; 2025 The Project by Vivek and Taef</p>
+</footer>
+<script>
+function parseCustomDate(dateString) {
+    let months = {
+        "Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04",
+        "May": "05", "Jun": "06", "Jul": "07", "Aug": "08",
+        "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"
+    };
+
+    let parts = dateString.split(" ");
+    if (parts.length < 3) return "";
+
+    let month = months[parts[0]]; // Convert "Oct" → "10"
+    let day = parts[1].replace(",", "").padStart(2, "0"); // Ensure two-digit day
+    let year = parts[2];
+
+    return `${year}-${month}-${day}`;
+}
+
+function applyFilters() {
+    let selectedDate = document.getElementById("dateFilter").value;
+    let selectedMerchant = document.getElementById("merchantFilter").value.toLowerCase();
+    let selectedCategory = document.getElementById("categoryFilter").value.toLowerCase();
+    let selectedStatus = document.getElementById("statusFilter").value.toLowerCase();
+    let selectedFraud = document.getElementById("fraudFilter").value.trim();
+
+    let table = document.getElementById("transactionTable");
+    let rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+        let transactionCells = rows[i].getElementsByTagName("td");
+
+        let dateCell = transactionCells[5] ? transactionCells[5].textContent.trim() : ""; // 6 column
+        let merchantCell = transactionCells[3] ? transactionCells[3].textContent.trim().toLowerCase() : ""; // 4 column
+        let categoryCell = transactionCells[4] ? transactionCells[4].textContent.trim().toLowerCase() : ""; // 5 column
+        let statusCell = transactionCells[7] ? transactionCells[7].textContent.trim().toLowerCase() : ""; // 8 column
+        let fraudCell = transactionCells[8] ? transactionCells[8].textContent.trim() : ""; // 9 column
+
+        let formattedDate = parseCustomDate(dateCell);
+
+        let showRow =
+            (selectedDate === "" || formattedDate === selectedDate) &&
+            (selectedMerchant === "" || merchantCell.includes(selectedMerchant)) &&
+            (selectedCategory === "" || categoryCell.includes(selectedCategory)) &&
+            (selectedStatus === "" || statusCell === selectedStatus) &&
+            (selectedFraud === "" || fraudCell === selectedFraud);
+
+        rows[i].style.display = showRow ? "" : "none";
+    }
+}
+
+// Attach event listeners to apply filters dynamically
+document.getElementById("dateFilter").addEventListener("change", applyFilters);
+document.getElementById("merchantFilter").addEventListener("keyup", applyFilters);
+document.getElementById("categoryFilter").addEventListener("keyup", applyFilters);
+document.getElementById("statusFilter").addEventListener("change", applyFilters);
+document.getElementById("fraudFilter").addEventListener("change", applyFilters);
+</script>
+</body>
+</html>

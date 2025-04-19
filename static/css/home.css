@@ -1,0 +1,166 @@
+body {
+    background-image: url("/static/images/home2.jpg"); /* Ensure the correct path */
+    background-size: cover; /* Make sure the image covers the entire page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating */
+    background-attachment: fixed; /* Make the background fixed when scrolling */
+    background-color: #cccccc; /* Fallback color if image doesn't load */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Dark mode styles */
+.dark-mode body {
+    background: #121212;
+    color: #fff;
+}
+
+/* Dashboard container */
+.dashboard-container {
+    text-align: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Dark mode container */
+.dark-mode .dashboard-container {
+    background: #1e1e1e;
+    color: white;
+}
+
+/* Stats Container */
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Cards */
+.card {
+    flex: 1;
+    background: linear-gradient(135deg, #ffffff, #f3f3f3);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, background 0.3s, color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: black;
+}
+
+/* Dark mode cards */
+.dark-mode .card {
+    background: linear-gradient(135deg, #232323, #2a2a2a);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* Icons */
+.card i {
+    margin-bottom: 10px;
+    color: #2c3e50;
+    transition: color 0.3s;
+}
+
+/* Dark mode icons */
+.dark-mode .card i {
+    color: #f39c12; /* Gold for contrast */
+}
+
+/* Card hover effect */
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode card hover */
+.dark-mode .card:hover {
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* Card Titles */
+.card h1, .card h3 {
+    transition: color 0.3s;
+}
+
+/* Dark mode card titles */
+.dark-mode .card h1,
+.dark-mode .card h3 {
+    color: white;
+}
+/* Title Styling */
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2c3e50; /* Deep blue for professionalism */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* Dark Mode Title */
+.dark-mode .title {
+    color: #f39c12; /* Gold for contrast */
+    text-shadow: 3px 3px 15px rgba(255, 255, 255, 0.2);
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 90%;
+    padding-top: 110px; /* Space from top */
+}
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 15px 30px;
+    background: white; /* White background */
+    border-radius: 10px; /* Rounded edges */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: color 0.3s, text-shadow 0.3s, background 0.3s;
+}
+.dark-mode .title {
+    color: #f39c12;
+    background: #222; /* Dark background for title */
+    text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.2);
+}
+.dashboard-container {
+    text-align: center;
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;
+    transition: background 0.3s, color 0.3s;
+}
+.dark-mode .dashboard-container {
+    background: #1e1e1e;
+    color: white;
+}

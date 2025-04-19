@@ -1,0 +1,114 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    transition: background 0.3s, color 0.3s;
+}
+.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+.success-message {
+    color: green;
+    font-weight: bold;
+}
+.upload-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    margin-top: 80px;
+    transition: background 0.3s, color 0.3s;
+}
+.dark-mode .upload-container {
+    background: rgba(30, 30, 30, 0.95);
+    color: white;
+}
+.upload-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+}
+.dark-mode .upload-container h2 {
+    color: #f8f9fa;
+}
+.upload-container input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px dashed #007bff;
+    background: #f8f9fa;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+.dark-mode .upload-container input[type="file"] {
+    background: #333;
+    border-color: #f39c12;
+    color: white;
+}
+.upload-container button {
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+.dark-mode .upload-container button {
+    background: #f39c12;
+    color: black;
+}
+.upload-container button:hover {
+    background: #0056b3;
+}
+.dark-mode .upload-container button:hover {
+    background: #e67e22;
+}
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.dark-mode .success-message {
+    color: #2ecc71;
+}
+.dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.dark-mode .dark-mode-toggle {
+    background: #f39c12;
+    color: black;
+}
+.dark-mode-toggle:hover {
+    background: #0056b3;
+}
+.dark-mode .dark-mode-toggle:hover {
+    background: #e67e22;
+}

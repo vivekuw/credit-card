@@ -1,0 +1,29 @@
+.table-container {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+thead {
+            background: #343a40;
+            color: white;
+        }
+
+th, td {
+            padding: 12px;
+            text-align: center;
+        }
+tbody tr:hover {
+            background: #f1f1f1;
+        }
+
+.alert-high { color: red; font-weight: bold; }
+.alert-medium { color: orange; font-weight: bold; }
+.alert-low { color: green; font-weight: bold; }

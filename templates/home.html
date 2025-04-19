@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    {% include 'header.html' %}
+    <title>Home | Shield Trust Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
+</head>
+<body>
+<div class="main-container">
+    <h1 class="title">Shield Trust Bank</h1>
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">Credit Card Overview</h2>
+        <div class="stats-container">
+            <a href="/transaction/" class="card transactions">
+                <i class="fas fa-exchange-alt fa-2x"></i>
+                <h1>{{ total_transactions }}</h1>
+                <h3>Total Transactions</h3>
+            </a>
+            <a href="/fraud/" class="card fraud">
+                <i class="fas fa-user-shield fa-2x"></i>
+                <h1>{{ fraud_cases }}</h1>
+                <h3>Fraud Cases</h3>
+            </a>
+            <a href="/cards/" class="card total-cards">
+                <i class="fas fa-id-card fa-2x"></i>
+                <h1>{{ block_card }}</h1>
+                <h3>Block Cards</h3>
+            </a>
+            <a href="/active-cards/" class="card active-cards">
+                <i class="fas fa-check-circle fa-2x"></i>
+                <h1>{{ active_cards }}</h1>
+                <h3>Active Cards</h3>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+    .title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2c3e50; /* Deep blue for professionalism */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* Dark Mode Title */
+.dark-mode .title {
+    color: #f39c12; /* Gold for contrast */
+    text-shadow: 3px 3px 15px rgba(255, 255, 255, 0.2);
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 90%;
+    padding-top: 110px; /* Space from top */
+}
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 15px 30px;
+    background: white; /* White background */
+    border-radius: 10px; /* Rounded edges */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: color 0.3s, text-shadow 0.3s, background 0.3s;
+}
+.dark-mode .title {
+    color: #f39c12;
+    background: #222; /* Dark background for title */
+    text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.2);
+}
+.dashboard-container {
+    text-align: center;
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;
+    transition: background 0.3s, color 0.3s;
+}
+.dark-mode .dashboard-container {
+    background: #1e1e1e;
+    color: white;
+}
+</style>
+
+
+</html>
